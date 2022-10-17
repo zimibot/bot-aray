@@ -611,7 +611,6 @@ Selama ${clockString(new Date - user.afkTime)}
 						if (`${time2}` === "06:00:00" || `${time2}` === "19:00:00") {
 							listBoard()
 						}
-						console.log(time2)
 					}, 1000);
 					actv = true
 					haikal.sendText(m.chat, "Trello Auto Update aktif at 06:00:00 and 19:00:00")
