@@ -46,7 +46,8 @@ const ntilink = JSON.parse(fs.readFileSync("./baseikal/lib/antilink.json"))
 let attackInterval = null
 let actv = false
 let int
-
+let ard = []
+let data = []
 //=================================================//
 // Function
 wm = 'Funtsu BOT'
@@ -601,9 +602,30 @@ Selama ${clockString(new Date - user.afkTime)}
 			case 'tr-on':
 			case 'tr-off': {
 				// console.log(m)
-				let sp = command.split("-").pop()
 
-				if (actv && sp !== "off") {
+				if (ard.length === 0) {
+					ard.push({
+						id: m.chat,
+						actv: false
+					})
+				} else {
+
+					data = ard.filter(d => d.id === m.chat)
+
+					if (data.length === 0) {
+						ard.push({
+							id: m.chat,
+							actv: false
+						})
+					}
+
+				}
+				let bjs = ard.findIndex((obj => obj.id === m.chat));
+
+
+
+				let sp = command.split("-").pop()
+				if (ard[bjs].actv && sp !== "off") {
 					haikal.sendText(m.chat, "Trello Auto Update Sudah aktif")
 				} else if (sp === "on") {
 					int = setInterval(() => {
@@ -612,14 +634,15 @@ Selama ${clockString(new Date - user.afkTime)}
 							listBoard()
 						}
 					}, 1000);
-					actv = true
+					ard[bjs].actv = true
 					haikal.sendText(m.chat, "Trello Auto Update aktif at 06:00:00 and 19:00:00")
 				}
 
 				if (sp === "off") {
 					clearInterval(int)
 					haikal.sendText(m.chat, "Trello off")
-					actv = false
+					ard[bjs].actv = false
+
 				}
 
 

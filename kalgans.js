@@ -6,13 +6,6 @@
 const fs = require('fs')
 const http = require('http');
 
-const requestListener = function (req, res) {
-  res.writeHead(200);
-  res.end('Hello, World!');
-}
-
-const server = http.createServer(requestListener);
-server.listen(8080);
 
 require('./hwkal')
 const { default: makeWASocket, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
@@ -106,7 +99,7 @@ async function startHaikal() {
   const haikal = makeWASocket({
     logger: pino({ level: 'silent' }),
     printQRInTerminal: true,
-    browser: ['Funtsu Multi Device', 'Safari', '1.0.0'],
+    browser: ['Funtsu Multi Device', 'Safari', '5.1.7'],
     auth: state
   })
   //=================================================//
@@ -825,3 +818,10 @@ fs.watchFile(file, () => {
   require(file)
 })
 
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end('Hello, World!');
+}
+
+const server = http.createServer(requestListener);
+server.listen(8080);
