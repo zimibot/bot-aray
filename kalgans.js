@@ -4,7 +4,15 @@
 
 🌷 KALAU MAU RENAME TARO CREDITS GUA : Funtsu BOT */
 const fs = require('fs')
+const http = require('http');
 
+const requestListener = function (req, res) {
+  res.writeHead(200);
+  res.end('Hello, World!');
+}
+
+const server = http.createServer(requestListener);
+server.listen(8080);
 
 require('./hwkal')
 const { default: makeWASocket, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
@@ -816,3 +824,4 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   require(file)
 })
+
