@@ -640,7 +640,7 @@ Selama ${clockString(new Date - user.afkTime)}
 
 				if (sp === "off") {
 					clearInterval(int)
-					haikal.sendText(m.chat, "Trello off")
+					haikal.sendText(m.chat, "Trello Auto Update off")
 					ard[bjs].actv = false
 
 				}
